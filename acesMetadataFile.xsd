@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema targetNamespace="urn:acesMetadata:acesMetadataFile:v2.0"
-	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:amf="urn:acesMetadata:acesMetadataFile:v2.0"
+<xs:schema targetNamespace="urn:AcesMetadata:AcesMetadataFile:v2.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:amf="urn:AcesMetadata:AcesMetadataFile:v2.0"
 	xmlns:cdl="urn:ASC:CDL:v1.01" elementFormDefault="qualified" attributeFormDefault="unqualified">
 
 	<!-- Import CDL Schema -->
 	<xs:import schemaLocation="ASC-CDL_schema_v1.01.xsd" namespace="urn:ASC:CDL:v1.01"/>
 
 	<!-- Define general types -->
-	<xs:simpleType name="singleDigit">
+	<xs:simpleType name="SingleDigit">
 		<xs:restriction base="xs:integer">
 			<xs:totalDigits value="1"/>
 			<xs:minInclusive value="0"/>
@@ -15,58 +15,58 @@
 		</xs:restriction>
 	</xs:simpleType>
 
-	<xs:complexType name="dateTime">
+	<xs:complexType name="DateTime">
 		<xs:sequence>
-			<xs:element name="creationDateTime" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
-			<xs:element name="modificationDateTime" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="CreationDateTime" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="ModificationDateTime" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
 		</xs:sequence>
 	</xs:complexType>
 
 	<!-- Define transform name types -->
-	<xs:simpleType name="tnLmt">
+	<xs:simpleType name="TnLmt">
 		<xs:restriction base="xs:string">
 			<xs:pattern value="(LMT\.\S+\.a\d{1}\.v\d+)|(LMT\.Academy\.\S+\.a\d{1}\.\d{1}\.\d{1})"/>
 		</xs:restriction>
 	</xs:simpleType>
 
-	<xs:simpleType name="tnIdt">
+	<xs:simpleType name="TnIdt">
 		<xs:restriction base="xs:string">
 			<xs:pattern value="(IDT\.\S+\.a\S+\.v\S+)"/>
 		</xs:restriction>
 	</xs:simpleType>
 
-	<xs:simpleType name="tnOdt">
+	<xs:simpleType name="TnOdt">
 		<xs:restriction base="xs:string">
 			<xs:pattern value="(ODT\.\S+\.\S+\.a\d{1}\.v\d+)|(ODT\.Academy\.\S+\.a\d{1}\.\d{1}\.\d{1})"/>
 		</xs:restriction>
 	</xs:simpleType>
 
-	<xs:simpleType name="tnOutputTransform">
+	<xs:simpleType name="TnOutputTransform">
 		<xs:restriction base="xs:string">
 			<xs:pattern value="(RRTODT\.\S+\.\S+\.a\d{1}\.v\d+)|(RRTODT\.Academy\.\S+\.a\d{1}\.\d{1}\.\d{1})"/>
 		</xs:restriction>
 	</xs:simpleType>
 
-	<xs:simpleType name="tnRRT">
+	<xs:simpleType name="TnRRT">
 		<xs:restriction base="xs:string">
 			<xs:pattern value="(RRT\.a\d{1}\.\d\.\d+)"/>
 		</xs:restriction>
 	</xs:simpleType>
 
-	<xs:simpleType name="tnAcesToLmtWorkingSpace">
+	<xs:simpleType name="TnAcesToLmtWorkingSpace">
 		<xs:restriction base="xs:string">
 			<xs:pattern value="(ACEScsc\.\S+\.a\d{1}\.\d{1}\.\d{1})"/>
 		</xs:restriction>
 	</xs:simpleType>
 
-	<xs:simpleType name="tnLmtWorkingSpaceToAces">
+	<xs:simpleType name="TnLmtWorkingSpaceToAces">
 		<xs:restriction base="xs:string">
 			<xs:pattern value="(ACEScsc\.\S+\.a\S+\.\S+\.\S+)"/>
 		</xs:restriction>
 	</xs:simpleType>
 
 	<!-- Define identifier types -->
-	<xs:simpleType name="uuidStringType">
+	<xs:simpleType name="UuidStringType">
 		<xs:restriction base="xs:string">
 			<xs:pattern
 				value="([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})|(\{[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\})"/>
@@ -74,22 +74,22 @@
 		</xs:restriction>
 	</xs:simpleType>
 
-	<xs:simpleType name="uuidVersionType">
+	<xs:simpleType name="UuidVersionType">
 		<xs:restriction base="xs:integer">
 			<xs:minInclusive value="1"/>
 			<xs:maxInclusive value="5"/>
 		</xs:restriction>
 	</xs:simpleType>
 
-	<xs:complexType name="uuidType">
+	<xs:complexType name="UuidType">
 		<xs:simpleContent>
-			<xs:extension base="amf:uuidStringType">
-				<xs:attribute name="version" type="amf:uuidVersionType" use="required"/>
+			<xs:extension base="amf:UuidStringType">
+				<xs:attribute name="Version" type="amf:UuidVersionType" use="required"/>
 			</xs:extension>
 		</xs:simpleContent>
 	</xs:complexType>
 
-	<xs:simpleType name="hashAlgoType">
+	<xs:simpleType name="HashAlgoType">
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="sha256"/>
 			<xs:enumeration value="sha1"/>
@@ -97,118 +97,118 @@
 		</xs:restriction>
 	</xs:simpleType>
 
-	<xs:complexType name="hashType">
+	<xs:complexType name="HashType">
 		<xs:simpleContent>
 			<xs:extension base="xs:string">
-				<xs:attribute name="algorithm" type="amf:hashAlgoType" use="required"/>
+				<xs:attribute name="Algorithm" type="amf:HashAlgoType" use="required"/>
 			</xs:extension>
 		</xs:simpleContent>
 	</xs:complexType>
 
 	<!-- Define transform types -->
-	<xs:complexType name="transformType">
+	<xs:complexType name="TransformType">
 		<xs:sequence>
-			<xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1"/>
-			<xs:element name="hash" type="amf:hashType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="Description" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="Hash" type="amf:HashType" minOccurs="0" maxOccurs="1"/>
 		</xs:sequence>
 	</xs:complexType>
 
-	<xs:complexType name="idtType">
+	<xs:complexType name="IdtType">
 		<xs:complexContent>
-			<xs:extension base="amf:transformType">
+			<xs:extension base="amf:TransformType">
 				<xs:sequence>
-					<xs:element name="transformId" type="amf:tnIdt" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="TransformId" type="amf:TnIdt" minOccurs="1" maxOccurs="1"/>
 				</xs:sequence>
-				<xs:attribute name="applied" type="xs:boolean" use="required"/>
+				<xs:attribute name="Applied" type="xs:boolean" use="required"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
 
-	<xs:complexType name="rrtType">
+	<xs:complexType name="RrtType">
 		<xs:complexContent>
-			<xs:extension base="amf:transformType">
+			<xs:extension base="amf:TransformType">
 				<xs:sequence>
-					<xs:element name="transformId" type="amf:tnRRT" minOccurs="1" maxOccurs="1"/>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-
-	<xs:complexType name="odtType">
-		<xs:complexContent>
-			<xs:extension base="amf:transformType">
-				<xs:sequence>
-					<xs:element name="transformId" type="amf:tnOdt" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="TransformId" type="amf:TnRRT" minOccurs="1" maxOccurs="1"/>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
 
-	<xs:complexType name="outputTransformType">
+	<xs:complexType name="OdtType">
 		<xs:complexContent>
-			<xs:extension base="amf:transformType">
+			<xs:extension base="amf:TransformType">
+				<xs:sequence>
+					<xs:element name="TransformId" type="amf:TnOdt" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="OutputTransformType">
+		<xs:complexContent>
+			<xs:extension base="amf:TransformType">
 				<xs:choice minOccurs="1" maxOccurs="1">
 					<xs:sequence>
-						<xs:element name="transformId" type="amf:tnOutputTransform" minOccurs="1" maxOccurs="1"/>
+						<xs:element name="TransformId" type="amf:TnOutputTransform" minOccurs="1" maxOccurs="1"/>
 					</xs:sequence>
 					<xs:sequence>
-						<xs:element name="rrt" type="amf:rrtType" minOccurs="1" maxOccurs="1"/>
-						<xs:element name="odt" type="amf:odtType" minOccurs="1" maxOccurs="1"/>
+						<xs:element name="Rrt" type="amf:RrtType" minOccurs="1" maxOccurs="1"/>
+						<xs:element name="Odt" type="amf:OdtType" minOccurs="1" maxOccurs="1"/>
 					</xs:sequence>
 				</xs:choice>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
 
-	<xs:complexType name="acesToLmtWorkingSpaceType">
+	<xs:complexType name="AcesToLmtWorkingSpaceType">
 		<xs:complexContent>
-			<xs:extension base="amf:transformType">
+			<xs:extension base="amf:TransformType">
 				<xs:sequence>
-					<xs:element name="transformId" type="amf:tnAcesToLmtWorkingSpace" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="TransformId" type="amf:TnAcesToLmtWorkingSpace" minOccurs="1" maxOccurs="1"/>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
 
-	<xs:complexType name="lmtWorkingSpaceToAcesType">
+	<xs:complexType name="LmtWorkingSpaceToAcesType">
 		<xs:complexContent>
-			<xs:extension base="amf:transformType">
+			<xs:extension base="amf:TransformType">
 				<xs:sequence>
-					<xs:element name="transformId" type="amf:tnLmtWorkingSpaceToAces" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="TransformId" type="amf:TnLmtWorkingSpaceToAces" minOccurs="1" maxOccurs="1"/>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
 
-	<xs:complexType name="lmtWorkingSpaceType">
+	<xs:complexType name="LmtWorkingSpaceType">
 		<xs:sequence>
-			<xs:element name="acesToLmtWorkingSpace" type="amf:acesToLmtWorkingSpaceType" minOccurs="1" maxOccurs="1"/>
-			<xs:element name="lmtWorkingSpaceToAces" type="amf:lmtWorkingSpaceToAcesType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="AcesToLmtWorkingSpace" type="amf:AcesToLmtWorkingSpaceType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="LmtWorkingSpaceToAces" type="amf:LmtWorkingSpaceToAcesType" minOccurs="1" maxOccurs="1"/>
 		</xs:sequence>
 	</xs:complexType>
 
-	<xs:complexType name="lookTransformsType">
+	<xs:complexType name="LookTransformsType">
 		<xs:choice minOccurs="1" maxOccurs="5">
-			<xs:element name="lookFile" type="amf:lookFileType"/>
-			<xs:element name="asc-cdl" type="amf:cdlType"/>
+			<xs:element name="LookFile" type="amf:LookFileType"/>
+			<xs:element name="Asc-Cdl" type="amf:CdlType"/>
 		</xs:choice>
 	</xs:complexType>
 
-	<xs:complexType name="lmtType">
+	<xs:complexType name="LmtType">
 		<xs:complexContent>
-			<xs:extension base="amf:transformType">
+			<xs:extension base="amf:TransformType">
 				<xs:sequence>
-					<xs:element name="lmtWorkingSpace" type="amf:lmtWorkingSpaceType" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="LmtWorkingSpace" type="amf:LmtWorkingSpaceType" minOccurs="1" maxOccurs="1"/>
 				</xs:sequence>
-				<xs:attribute name="lmtStackPosition" type="amf:singleDigit" use="required"/>
-				<xs:attribute name="applied" type="xs:boolean" use="required"/>
+				<xs:attribute name="LmtStackPosition" type="amf:SingleDigit" use="required"/>
+				<xs:attribute name="Applied" type="xs:boolean" use="required"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
 
-	<xs:complexType name="cdlType">
+	<xs:complexType name="CdlType">
 		<xs:complexContent>
-			<xs:extension base="amf:lmtType">
+			<xs:extension base="amf:LmtType">
 				<xs:sequence>
 					<xs:element name="SOPNode" type="cdl:SOPNodeType" minOccurs="1" maxOccurs="1"/>
 					<xs:element name="SatNode" type="cdl:SatNodeType" minOccurs="1" maxOccurs="1"/>
@@ -217,65 +217,65 @@
 		</xs:complexContent>
 	</xs:complexType>
 
-	<xs:complexType name="lookFileType">
+	<xs:complexType name="LookFileType">
 		<xs:complexContent>
-			<xs:extension base="amf:lmtType">
+			<xs:extension base="amf:LmtType">
 				<xs:sequence>
-					<xs:element name="transformId" type="amf:tnLmt" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="TransformId" type="amf:TnLmt" minOccurs="1" maxOccurs="1"/>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
 
-	<xs:complexType name="acesVersionType">
+	<xs:complexType name="AcesVersionType">
 		<xs:sequence>
-			<xs:element name="acesMajorVersion" type="amf:singleDigit" minOccurs="1" maxOccurs="1"/>
-			<xs:element name="acesMinorVersion" type="amf:singleDigit" minOccurs="1" maxOccurs="1"/>
-			<xs:element name="acesPatchVersion" type="amf:singleDigit" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="AcesMajorVersion" type="amf:SingleDigit" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="AcesMinorVersion" type="amf:SingleDigit" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="AcesPatchVersion" type="amf:SingleDigit" minOccurs="1" maxOccurs="1"/>
 		</xs:sequence>
 	</xs:complexType>
 
-	<xs:complexType name="infoType">
+	<xs:complexType name="InfoType">
 		<xs:sequence>
-			<xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1"/>
-			<xs:element name="dateTime" type="amf:dateTime" minOccurs="1" maxOccurs="1"/>
-			<xs:element name="uuid" type="amf:uuidType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="Description" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="DateTime" type="amf:DateTime" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Uuid" type="amf:UuidType" minOccurs="0" maxOccurs="1"/>
 		</xs:sequence>
 	</xs:complexType>
 
-	<xs:complexType name="pipelineInfoType">
+	<xs:complexType name="PipelineInfoType">
 		<xs:complexContent>
-			<xs:extension base="amf:infoType">
+			<xs:extension base="amf:InfoType">
 				<xs:sequence>
-					<xs:element name="acesVersion" type="amf:acesVersionType" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="AcesVersion" type="amf:AcesVersionType" minOccurs="1" maxOccurs="1"/>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
 
-	<xs:complexType name="acesPipelineType">
+	<xs:complexType name="AcesPipelineType">
 		<xs:sequence>
-			<xs:element name="pipelineInfo" type="amf:pipelineInfoType" minOccurs="1" maxOccurs="1"/>
-			<xs:element name="inputTransform" type="amf:idtType" minOccurs="0" maxOccurs="1"/>
-			<xs:element name="lookTransforms" type="amf:lookTransformsType" minOccurs="0" maxOccurs="1">
-				<xs:unique name="uniqueLmtStackPosition">
-					<xs:selector xpath="amf:lookFile | amf:asc-cdl" />
+			<xs:element name="PipelineInfo" type="amf:PipelineInfoType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="InputTransform" type="amf:IdtType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="LookTransforms" type="amf:LookTransformsType" minOccurs="0" maxOccurs="1">
+				<xs:unique name="UniqueLmtStackPosition">
+					<xs:selector xpath="amf:LookFile | amf:Asc-Cdl" />
 					<xs:field xpath="@lmtStackPosition" />
 				</xs:unique>
 			</xs:element>
-			<xs:element name="outputTransform" type="amf:outputTransformType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="OutputTransform" type="amf:OutputTransformType" minOccurs="1" maxOccurs="1"/>
 		</xs:sequence>
 	</xs:complexType>
 
 	<!-- Define ACES Metadata File element -->
-	<xs:element name="acesMetadataFile">
+	<xs:element name="AcesMetadataFile">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element name="fileInfo" type="amf:infoType" minOccurs="1" maxOccurs="1"/>
-				<xs:element name="acesPipeline" type="amf:acesPipelineType" minOccurs="1" maxOccurs="1"/>
-				<xs:element name="archivedAcesPipeline" type="amf:acesPipelineType" minOccurs="0" maxOccurs="10"/>
+				<xs:element name="FileInfo" type="amf:InfoType" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="AcesPipeline" type="amf:AcesPipelineType" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="ArchivedAcesPipeline" type="amf:AcesPipelineType" minOccurs="0" maxOccurs="10"/>
 			</xs:sequence>
-			<xs:attribute name="version" type="xs:decimal" use="required" fixed="2.0"/>
+			<xs:attribute name="Version" type="xs:decimal" use="required" fixed="2.0"/>
 		</xs:complexType>
 	</xs:element>
 
